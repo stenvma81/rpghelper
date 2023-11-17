@@ -11,7 +11,7 @@ A Python-Flask project aiming to create a web-based helper application for playi
 
 ## Roadmap:
 
-- **Account management** (TODO)
+- **Account management** (DONE)
 - **Character creation** (TODO)
 - **Game session** (TODO)
 - **Game map** (TODO)
@@ -38,7 +38,7 @@ import os
 print(os.urandom(24))
 ```
 
-Should you so desire, create and activate a new Python virtual environment.
+Should you so desire, create and activate a new Python virtual environment. Make sure you are in the /src folder.
 
 ```bash
 python3 -m venv venv
