@@ -8,7 +8,7 @@ def auth_routes(app):
     @app.route('/')
     def index_route():
         return render_template('index.html')
-    
+
 
     @app.route('/login', methods=['GET', 'POST'])
     def login_route():
@@ -40,7 +40,7 @@ def auth_routes(app):
         if request.method == 'POST':
             username, role, password_a, password_b = users.get_register_form_data()
 
-            error = users.form_check_input(username, password_a, password_b, error)
+            error = users.register_form_check_input(username, password_a, password_b, error)
 
             if not error:
                 try:

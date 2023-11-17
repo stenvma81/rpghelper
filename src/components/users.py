@@ -25,7 +25,7 @@ def login_user(username, password):
     user_data = get_user_by_username(username)
 
     if not user_data:
-        raise Exception("Invalid credentials")
+        raise Exception("Invalid credentials. Try again.")
     
     try:
         sql = text("""
@@ -62,7 +62,7 @@ def register_user(username, password, role):
 
     except IntegrityError:
         db.session.rollback()
-        raise Exception("Username handle already exists.")
+        raise Exception("Username already taken.")
     
     except Exception as e:
         db.session.rollback()
@@ -94,7 +94,7 @@ def get_login_form_data():
     return username, password
 
 
-def form_check_input(username, password_a, password_b, error):
+def register_form_check_input(username, password_a, password_b, error):
     if not username or not password_a or not password_b:
         error = "All fields are required!"
     elif password_a != password_b:
