@@ -12,7 +12,7 @@ A Python-Flask project aiming to create a web-based helper application for playi
 ## Roadmap:
 
 - **Account management** (DONE)
-- **Character creation** (TODO)
+- **Character management** (TODO)
 - **Game session** (TODO)
 - **Game map** (TODO)
 - **Notes** (TODO)
