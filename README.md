@@ -20,4 +20,42 @@ A Python-Flask project aiming to create a web-based helper application for playi
 
 ## Testing:
 
-(TODO)
+To test the current features follow the steps below. When the map & icon features are added, further testing can be done by logging into the app as different users from multiple browser tabs.
+
+After cloning the repo, create a .env file in the root directory of the project and add a secret key and your local database uri. This project is designed for using PostgreSQL, so the .env would look something like this:
+
+```bash
+SECRET_KEY=your-secret-key
+SQLALCHEMY_DATABASE_URI=postgresql://your-username:your-password@localhost:your-port-number/your-database
+```
+
+The easy way to generate a secret key is using the Python interpreter and copying the resulting key to your .env file:
+
+```bash
+python ###or python3
+
+import os
+print(os.urandom(24))
+```
+
+Should you so desire, create and activate a new Python virtual environment.
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+Create and to connect to your postgresql database. Use the schema.sql to structure your new database.
+
+```
+psql -d your-database-name < schema.sql
+```
+
+For help on installing and using PostgreSQL, visit the official website at https://www.postgresql.org.
+
+To test the app install the necessary dependencies and start the development server. Make sure you are in the /src directory of the project. By default the app can be found at http://127.0.0.1/5000.
+
+```bash
+pip install -r requirements.txt
+flask run
+```

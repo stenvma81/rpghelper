@@ -1,10 +1,17 @@
-from flask import Flask
+from flask import Flask, render_template
+from dotenv import load_dotenv
 
-app = Flask(__name__)
+load_dotenv()
 
-@app.route('/')
-def home():
-    return 'This will be a fine application'
+from utils.config import Config
+from routes.auth_routes import auth_routes
+from db.db import database
+
+
+app = Flask(__name__, template_folder='templates')
+app.config.from_object(Config)
+database.init_app(app)
+auth_routes(app)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+        app.run(debug=True)

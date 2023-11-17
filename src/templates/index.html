@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div>
+        {% if session['role'] == "admin"%}
+            <p>Welcome Sir!</p>
+        {% elif session['role'] == "player"%}
+            <p>Form up Grunt!</p>
+        {% else %}
+            <p>Maybe you should log in?</p>
+        {% endif %}
+    </div>
+{% endblock %}
