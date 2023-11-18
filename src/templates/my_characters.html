@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block content %}
+    {% if character_list %}
+        <h1>My Characters</h1>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Health</th>
+                    <th>Armor Class</th>
+                    <!-- Add more columns as needed -->
+                </tr>
+                {% for character in character_list %}
+                    <tr>
+                        <td>{{ character.name }}</td>
+                        <td>{{ character.health }}</td>
+                        <td>{{ character.armor_class }}</td>
+                        <!-- Add more data fields as needed -->
+                    </tr>
+                {% endfor %}
+            </table>
+    {% else %}
+    <p>No characters found.</p>
+    {% endif %}
+{% endblock %}
