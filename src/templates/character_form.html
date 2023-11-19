@@ -1,0 +1,15 @@
+{% block content %}
+    <form method="POST">
+        <div>
+            Character name: <input type="text" name="name" value="{{ character.name if character else '' }}" required><br>
+            Health points: <input type="number" name="health" value="{{ character.health if character else '0' }}" required><br>
+            Armor class: <input type="number" name="armor_class" value="{{ character.armor_class if character else '0' }}" required><br>
+        <br>
+        </div>
+        <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+        <input type="submit" value="Submit" class="button">
+    </form>
+    {% if error %}
+        <p>{{ error }}</p>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,9 @@
+{% block content %}
+    <p>At the moment you can add, modify and delete game characters.</p>
+    <form action="{{ url_for('create_character_route') }}" method="get">
+        <button type="submit">Add Character</button>
+    </form>
+    <form action="{{ url_for('my_characters_route') }}" method="get">
+        <button type="submit">Character List</button>
+    </form>
+{% endblock %}

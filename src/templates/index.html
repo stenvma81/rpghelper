@@ -4,7 +4,7 @@
         {% if session['role'] == "admin"%}
             <p>Welcome Sir!</p>
         {% elif session['role'] == "player"%}
-            <p>Form up Grunt!</p>
+            {% include 'user_menu.html' %}
         {% else %}
             <p>Maybe you should log in?</p>
         {% endif %}
