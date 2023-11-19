@@ -45,10 +45,16 @@ python3 -m venv venv
 source venv/bin/activate
 ```
 
-Create and to connect to your postgresql database. Use the schema.sql to structure your new database.
+Create and to connect to your postgresql database, run the following command.
 
 ```
-psql -d your-database-name < schema.sql
+flask db init
+```
+
+If you have already started testing the app with a previous iteration, run
+
+```bash
+flask db upgrade
 ```
 
 For help on installing and using PostgreSQL, visit the official website at https://www.postgresql.org.
