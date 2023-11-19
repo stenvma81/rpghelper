@@ -5,7 +5,7 @@ from components import characters, users
 def character_routes(app):
     
 
-    @app.route('/create_character', methods=['GET', 'POST'])
+    @app.route('/characters/create', methods=['GET', 'POST'])
     def create_character_route():
         error = None
 
@@ -26,7 +26,7 @@ def character_routes(app):
         return render_template('create_character.html', error=error, csrf_token=csrf_token)
     
 
-    @app.route('/my_characters', methods=['GET'])
+    @app.route('/characters/list', methods=['GET'])
     def my_characters_route():
         error = None
         user_id = session.get('user_id')
@@ -38,3 +38,16 @@ def character_routes(app):
 
         csrf_token = users.get_csrf_token()
         return render_template('my_characters.html', character_list=character_list, error=error, csrf_token=csrf_token)
+    
+
+    @app.route('/characters/delete/<int:character_id>', methods=['POST'])
+    def delete_character(character_id):
+        error = None
+
+        try:
+            character_list = characters.delete_character(character_id)
+        except Exception as e:
+            error = f"Error occurred: {str(e)}"
+
+        csrf_token = users.get_csrf_token()
+        return redirect(url_for('my_characters_route'))

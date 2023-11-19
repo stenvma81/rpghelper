@@ -7,14 +7,18 @@
                     <th>Name</th>
                     <th>Health</th>
                     <th>Armor Class</th>
-                    <!-- Add more columns as needed -->
+                    <th>Actions</th>
                 </tr>
                 {% for character in character_list %}
                     <tr>
                         <td>{{ character.name }}</td>
                         <td>{{ character.health }}</td>
                         <td>{{ character.armor_class }}</td>
-                        <!-- Add more data fields as needed -->
+                        <td>
+                            <form action="{{ url_for('delete_character', character_id=character.character_id) }}" method="post">
+                                <input type="submit" value="Delete">
+                            </form>
+                        </td>
                     </tr>
                 {% endfor %}
             </table>
