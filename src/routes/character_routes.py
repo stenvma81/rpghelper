@@ -24,10 +24,10 @@ def character_routes(app):
         error = None
 
         if request.method == 'POST':
-            name, health, armor_class = characters.get_create_character_form_data()
+            name, health, armor_class = characters.get_character_form_data()
             user_id = session.get('user_id')
 
-            error = characters.create_character_form_check_input(name, health, armor_class, error)
+            error = characters.character_form_check_input(name, health, armor_class, error)
 
             if not error:
                 try:
@@ -43,10 +43,16 @@ def character_routes(app):
     @app.route('/characters/modify/<int:character_id>', methods=['GET', 'POST'])
     def modify_character(character_id):
         error = None
+        print("request method: ", request.method)
+
         character = characters.get_character_by_character_id(character_id)
+        if character is None:
+            error = "Character not found"
+            return render_template('modify_character.html', error=error, character=None)
 
         if request.method == 'POST':
             try:
+                print("Processing post request")
                 name, health, armor_class = characters.get_character_form_data()
                 characters.modify_character(character_id, name, health, armor_class)
 

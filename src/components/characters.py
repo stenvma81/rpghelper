@@ -101,8 +101,12 @@ def delete_character(character_id):
 
 def get_character_form_data():
     name = request.form.get('name')
-    health = int(request.form.get('health'))
-    armor_class = int(request.form.get('armor_class'))
+
+    health_string = request.form.get('health')
+    health = int(health_string) if health_string else None
+
+    armor_class_string = request.form.get('armor_class')
+    armor_class = int(armor_class_string) if armor_class_string else None
 
     return name, health, armor_class
 
