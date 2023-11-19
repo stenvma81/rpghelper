@@ -1,4 +1,5 @@
 from flask import render_template, request, redirect, url_for, session
+import logging
 from components import characters, users
 
 
@@ -13,7 +14,8 @@ def character_routes(app):
         try:
             character_list = characters.get_characters_by_user_id(user_id)
         except Exception as e:
-            error = f"Error occurred: {str(e)}"
+                error = "Character list fetch failed."
+                logging.error(f"Error occurred: {str(e)}")
 
         csrf_token = users.get_csrf_token()
         return render_template('my_characters.html', character_list=character_list, error=error, csrf_token=csrf_token)
@@ -34,7 +36,8 @@ def character_routes(app):
                     characters.create_character(name, health, armor_class, user_id)
                     return redirect(url_for('my_characters_route'))
                 except Exception as e:
-                    error = f"Error occurred: {str(e)}"
+                    error = "Character creation failed."
+                    logging.error(f"Error occurred: {str(e)}")
 
         csrf_token = users.get_csrf_token()
         return render_template('create_character.html', error=error, csrf_token=csrf_token, character=None)
@@ -52,13 +55,13 @@ def character_routes(app):
 
         if request.method == 'POST':
             try:
-                print("Processing post request")
                 name, health, armor_class = characters.get_character_form_data()
                 characters.modify_character(character_id, name, health, armor_class)
 
                 return redirect(url_for('my_characters_route'))
             except Exception as e:
-                error = f"Error occurred: {str(e)}"
+                error = "Character modifying failed."
+                logging.error(f"Error occurred: {str(e)}")
 
         return render_template('modify_character.html', error=error, character_id=character_id, character=character)
 
@@ -70,6 +73,7 @@ def character_routes(app):
         try:
             character_list = characters.delete_character(character_id)
         except Exception as e:
-            error = f"Error occurred: {str(e)}"
+                error = "Character deletion failed."
+                logging.error(f"Error occurred: {str(e)}")
 
         return redirect(url_for('my_characters_route'))

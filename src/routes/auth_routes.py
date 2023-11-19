@@ -1,4 +1,5 @@
 from flask import render_template, request, redirect, url_for, session
+import logging
 from components import users
 
 
@@ -27,7 +28,8 @@ def auth_routes(app):
                         error = "Invalid credentials"
 
                 except Exception as e:
-                    error = f"Error occurred: {str(e)}"
+                    error = "Login failed."
+                    logging.error(f"Error occurred: {str(e)}")
 
         csrf_token = users.get_csrf_token()
         return render_template('login.html', error=error, csrf_token=csrf_token)
@@ -48,7 +50,8 @@ def auth_routes(app):
                     users.login_user(username, password_a)
                     return redirect(url_for('index_route'))
                 except Exception as e:
-                    error = f"Error occurred: {str(e)}"
+                    error = "Failed to register new user"
+                    logging.error(f"Error occurred: {str(e)}")
 
         csrf_token = users.get_csrf_token()
         return render_template('register.html', error=error, csrf_token=csrf_token)
