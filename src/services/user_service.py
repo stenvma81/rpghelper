@@ -78,41 +78,6 @@ def logout_user():
             pass
 
 
-def get_register_form_data():
-    username = request.form.get('username')
-    role = request.form.get('role')
-    password_a = request.form.get('password_a')
-    password_b = request.form.get('password_b')
-
-    return username, role, password_a, password_b
-
-
-def get_login_form_data():
-    username = request.form.get('username')
-    password = request.form.get('password')
-
-    return username, password
-
-
-def register_form_check_input(username, password_a, password_b, error):
-    if not username or not password_a or not password_b:
-        error = "All fields are required!"
-    elif password_a != password_b:
-        error = "Passwords do not match"
-    elif len(password_a) < 4:
-        error = "Password should be at least 4 characters long"
-
-    return error
-
-
-def login_form_check_input(username, password):
-    error = None
-
-    if not username or not password:
-        error = "Both username and password are required"
-        return error
-
-
 def get_csrf_token():
     if "csrf_token" not in session:
         create_csrf_token()

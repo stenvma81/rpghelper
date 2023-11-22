@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block content %}
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/map.css') }}">
+    </head>
+    <div id="mapContainer">
+        <img id="map" src="{{ url_for('static', filename='images/night_city_map.jpg') }}" alt="Night City Map">
+        <img id="playerIcon" src="{{ url_for('static', filename='images/titlrd.jpg') }}" alt="Player Icon">
+    </div>
+    {% if error %}
+        <p>{{ error }}</p>
+    {% endif %}
+{% endblock %}
