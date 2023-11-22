@@ -38,6 +38,8 @@
     height: 10px;
     background-color: green;
     width: 100%;
+    color: white;
+    font-size: 9px;
 }
 
 #healthBar1 {

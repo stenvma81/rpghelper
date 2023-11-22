@@ -15,8 +15,19 @@
             <div id="nameTag">Kurppa</div>
         </div>
     </div>
+    <select id="characterSelect">
+        {% for character in character_list %}
+        <option value="{{ character.character_id }}"
+                data-name="{{ character.name }}"
+                data-health="{{ character.health }}"
+                data-armorclass="{{ character.armor_class }}"
+                >{{ character.name }}
+            </option>
+        {% endfor %}
+    </select>
     <script src="{{ url_for('static', filename='JS/draggable_icon.js') }}"></script>
     {% if error %}
         <p>{{ error }}</p>
     {% endif %}
+    <p>Tässä on: {{ character_list }}</p>
 {% endblock %}
