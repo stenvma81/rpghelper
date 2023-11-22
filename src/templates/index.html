@@ -2,9 +2,9 @@
 {% block content %}
     <div>
         {% if session['role'] == "admin"%}
-            <p>Welcome Sir!</p>
+            <p>There will be some admin functionality here.</p>
         {% elif session['role'] == "player"%}
-            {% include 'user_menu.html' %}
+            <p>Form up Grunt!</p>
         {% else %}
             <p>Maybe you should log in?</p>
         {% endif %}

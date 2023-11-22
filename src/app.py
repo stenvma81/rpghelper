@@ -8,8 +8,8 @@ from utils.config import Config
 from routes.auth_routes import auth_routes
 from routes.character_routes import character_routes
 from db.db import db
-from models.user import User
-from models.character import Character
+from models.user_model import User
+from models.character_model import Character
 
 
 app = Flask(__name__, template_folder='templates')
