@@ -1,0 +1,15 @@
+{% for character in character_list %}
+<tr>
+    <td>{{ character.name }}</td>
+    <td>{{ character.health }}</td>
+    <td>{{ character.armor_class }}</td>
+    <td>
+        <form action="{{ url_for('modify_character', character_id=character.character_id) }}" method="get">
+            <input type="submit" value="Modify">
+        </form>
+        <form action="{{ url_for('delete_character', character_id=character.character_id) }}" method="post">
+            <input type="submit" value="Delete">
+        </form>
+    </td>
+</tr>
+{% endfor %}

@@ -4,7 +4,7 @@ from sqlalchemy import text
 from sqlalchemy.exc import IntegrityError
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from db.db import database as db
+from db.db import db
 
 
 def get_user_by_username(username):

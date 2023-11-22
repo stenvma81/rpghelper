@@ -11,8 +11,8 @@ A Python-Flask project aiming to create a web-based helper application for playi
 
 ## Roadmap:
 
-- **Account management** (TODO)
-- **Character creation** (TODO)
+- **Account management** (DONE)
+- **Character management** (TODO)
 - **Game session** (TODO)
 - **Game map** (TODO)
 - **Notes** (TODO)
@@ -38,17 +38,23 @@ import os
 print(os.urandom(24))
 ```
 
-Should you so desire, create and activate a new Python virtual environment.
+Should you so desire, create and activate a new Python virtual environment. Make sure you are in the /src folder.
 
 ```bash
 python3 -m venv venv
 source venv/bin/activate
 ```
 
-Create and to connect to your postgresql database. Use the schema.sql to structure your new database.
+Create and to connect to your postgresql database, run the following command.
 
 ```
-psql -d your-database-name < schema.sql
+flask db init
+```
+
+If you have already started testing the app with a previous iteration, run
+
+```bash
+flask db upgrade
 ```
 
 For help on installing and using PostgreSQL, visit the official website at https://www.postgresql.org.

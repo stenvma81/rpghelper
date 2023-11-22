@@ -9,12 +9,13 @@
         {% if session.username %}
             <a href="{{ url_for('logout_route') }}" class="button logout-button">Logout</a>
                 {% else %}
-                    <a href="{{ url_for('login_route') }}" class="button login-button">Login &#x2192;</a>
+                    <a href="{{ url_for('login_route_get') }}" class="button login-button">Login &#x2192;</a>
                 {% endif %}
             </div>
          </div>
          {% if session.username %}
              <p>Welcome, {{ session.username }}!</p>
+             {% include 'user_menu.html' %}
          {% endif %}
     </div>
     <hr>
