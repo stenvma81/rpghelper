@@ -1,15 +1,27 @@
 {% extends "layout.html" %}
 {% block content %}
-    <h1>Register</h1>
+    <h2>Register</h2>
     <form method="POST">
-        <div>
-            Username: <input type="text" name="username" required><br>
-            Role: <input type="radio" id="user" value="player" name="role" checked>
-            <label for="user">Player</label><br>
-            <input type="radio" id="user" value="admin" name="role"><br>
-            <label for="admin">GM</label><br>
-            Password: <input type="password" name="password_a" required><br>
-            Password again: <input type="password" name="password_b" required><br>
+        <div class="form-container">
+            <div class="input-container">
+                <p>Username:</p>
+                <input type="text" name="username" required>
+            </div>
+            <div class="input-container-radio">
+                <p>Role:</p>
+                <input type="radio" id="user" value="player" name="role" checked>
+                <label for="user">Player</label>
+                <input type="radio" id="user" value="admin" name="role">
+                <label for="admin">GM</label>
+            </div>
+            <div class="input-container">
+                <p>Password:</p>
+                <input type="password" name="password_a" required>
+            </div>
+            <div class="input-container">
+            <p>Password again:</p>
+            <input type="password" name="password_b" required>
+            </div>
         <br>
         </div>
         <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">

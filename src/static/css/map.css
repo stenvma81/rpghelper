@@ -1,7 +1,6 @@
 #mapContainer {
     position: relative;
-    width: 600px;
-    height: 600px;
+    width: 100%;
 }
 
 #map {
