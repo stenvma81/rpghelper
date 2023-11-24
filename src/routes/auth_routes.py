@@ -2,6 +2,7 @@ from flask import render_template, request, redirect, url_for, session
 import logging
 from services import user_service
 from utils.form_handlers import UserHandlers
+from utils.csrf_utils import get_csrf_token
 
 
 def auth_routes(app):
@@ -16,7 +17,7 @@ def auth_routes(app):
     def login_route_get():
         error = None
 
-        csrf_token = user_service.get_csrf_token()
+        csrf_token = get_csrf_token()
         return render_template('login.html', error=error, csrf_token=csrf_token)
     
 
@@ -43,7 +44,7 @@ def auth_routes(app):
     def register_route_get():
         error = None
 
-        csrf_token = user_service.get_csrf_token()
+        csrf_token = get_csrf_token()
         return render_template('register.html', error=error, csrf_token=csrf_token)
 
 
