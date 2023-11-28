@@ -15,7 +15,7 @@ def auth_routes(app):
 
     @app.route('/login', methods=['GET'])
     def login_route_get():
-        error = None
+        error = session.pop('error', None)
 
         csrf_token = get_csrf_token()
         return render_template('login.html', error=error, csrf_token=csrf_token)
@@ -32,12 +32,13 @@ def auth_routes(app):
                 if user_service.login_user(username, password):
                     return redirect(url_for('index_route'))
                 else:
-                    error = "Invalid credentials"
+                    session['error'] = "Invalid credentials"
+                    return redirect(url_for('login_route_get'))
 
             except Exception as e:
-                error = "Login failed."
+                session['error'] = "Login failed."
                 logging.error(f"Error occurred: {str(e)}")
-                return redirect(url_for(login_route_get))
+                return redirect(url_for('login_route_get'))
     
 
     @app.route('/register', methods=['GET'])
