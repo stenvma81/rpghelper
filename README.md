@@ -1,5 +1,5 @@
 # rpghelper
-A Python-Flask project aiming to create a web-based helper application for playing tabletop RPGs. This basic version will be geared towards Cyberpunk RED and allow the users to create characters which will be displayed on a game scenario map. Each user can move their respective characters while the admin can controls all.
+A Python-Flask project aiming to create a web-based helper application for playing tabletop RPGs. This basic version will be geared towards Cyberpunk RED and allow the users to create characters which will be displayed on a game scenario map. Each user can move their respective characters while the admin can control all map icons.
 
 ## Features:
 
