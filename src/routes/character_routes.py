@@ -63,7 +63,7 @@ def character_routes(app):
             return render_template('modify_character.html', error=error, character_id=character_id, character=character, csrf_token=csrf_token)
 
 
-    @app.route('/characters/modify/<int:character_id>', methods=['GET'])
+    @app.route('/characters/modify/<int:character_id>', methods=['POST'])
     def modify_character_post(character_id):
         error=None
 

@@ -1,40 +1,51 @@
 function makeIconDraggable(draggableElement, boundaryElement) {
-    let currentMouseX = 0, currentMouseY = 0;
+    let isDragging = false;
+    let startX = 0, startY = 0;
 
-    draggableElement.onmousedown = function(event) {
+    draggableElement.addEventListener('mousedown', startDrag);
+
+    function startDrag(event) {
         event.preventDefault();
-        currentMouseX = event.clientX;
-        currentMouseY = event.clientY;
-        document.onmouseup = endDrag;
-        document.onmousemove = performDrag;
-    };
+        isDragging = true;
+
+        startX = event.clientX;
+        startY = event.clientY;
+
+        document.addEventListener('mousemove', performDrag);
+        document.addEventListener('mouseup', endDrag);
+    }
 
     function performDrag(event) {
-        event.preventDefault();
+        if (!isDragging) return;
 
-        const deltaX = currentMouseX - event.clientX;
-        const deltaY = currentMouseY - event.clientY;
-        currentMouseX = event.clientX;
-        currentMouseY = event.clientY;
+        const deltaX = startX - event.clientX;
+        const deltaY = startY - event.clientY;
 
         const newLeftPercent = ((draggableElement.offsetLeft - deltaX) / boundaryElement.offsetWidth) * 100;
         const newTopPercent = ((draggableElement.offsetTop - deltaY) / boundaryElement.offsetHeight) * 100;
 
         draggableElement.style.left = `${newLeftPercent}%`;
         draggableElement.style.top = `${newTopPercent}%`;
+
+        startX = event.clientX;
+        startY = event.clientY;
     }
 
     function endDrag() {
-        document.onmouseup = null;
-        document.onmousemove = null;
+        if (!isDragging) return;
+
+        document.removeEventListener('mousemove', performDrag);
+        document.removeEventListener('mouseup', endDrag);
+
+        isDragging = false;
     }
 }
 
-window.onload = function() {
+window.addEventListener('load', function() {
     const characterElement = document.getElementById('character');
     const mapContainerElement = document.getElementById('mapContainer');
     makeIconDraggable(characterElement, mapContainerElement);
-};
+});
 
 document.getElementById('characterSelect').addEventListener('change', function() {
     const selectedOption = this.options[this.selectedIndex];
