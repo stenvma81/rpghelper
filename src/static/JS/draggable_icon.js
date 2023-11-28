@@ -17,16 +17,27 @@ function makeIconDraggable(draggableElement, boundaryElement) {
 
     function performDrag(event) {
         if (!isDragging) return;
+    
+        let deltaX = startX - event.clientX;
+        let deltaY = startY - event.clientY;
 
-        const deltaX = startX - event.clientX;
-        const deltaY = startY - event.clientY;
-
-        const newLeftPercent = ((draggableElement.offsetLeft - deltaX) / boundaryElement.offsetWidth) * 100;
-        const newTopPercent = ((draggableElement.offsetTop - deltaY) / boundaryElement.offsetHeight) * 100;
-
+        let newLeft = draggableElement.offsetLeft - deltaX;
+        let newTop = draggableElement.offsetTop - deltaY;
+    
+        let minLeft = 0;
+        let maxLeft = boundaryElement.offsetWidth - draggableElement.offsetWidth;
+        let minTop = 0;
+        let maxTop = boundaryElement.offsetHeight - draggableElement.offsetHeight;
+    
+        newLeft = Math.max(minLeft, Math.min(newLeft, maxLeft));
+        newTop = Math.max(minTop, Math.min(newTop, maxTop));
+    
+        const newLeftPercent = (newLeft / boundaryElement.offsetWidth) * 100;
+        const newTopPercent = (newTop / boundaryElement.offsetHeight) * 100;
+    
         draggableElement.style.left = `${newLeftPercent}%`;
         draggableElement.style.top = `${newTopPercent}%`;
-
+    
         startX = event.clientX;
         startY = event.clientY;
     }
