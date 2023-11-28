@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
-    <h1>Login</h1>
+    <h2>Login</h2>
     <form method="POST">
         <div>
             Username: <input type="text" name="username" required><br>
@@ -8,7 +8,7 @@
         </div>
         <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
         <input type="submit" value="Login">
-        <a href="{{ url_for('register_route_get') }}">Register</a>
+        <a href="{{ url_for('register_route_get') }}"><input type="button" value="Register"></a>
        </form>
     {% if error %}
         <p>{{ error }}</p>

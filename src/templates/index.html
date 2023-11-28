@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
-    <div>
+    <div class="top-bar">
         {% if session['role'] == "admin"%}
             <p>There will be some admin functionality here.</p>
         {% elif session['role'] == "player"%}

@@ -1,7 +1,8 @@
 from flask import render_template, request, redirect, url_for, session
 import logging
-from services import character_service, user_service
+from services import character_service
 from utils.form_handlers import CharacterHandlers
+from utils.csrf_utils import get_csrf_token
 
 
 def character_routes(app):
@@ -18,7 +19,7 @@ def character_routes(app):
                 error = "Character list fetch failed."
                 logging.error(f"Error occurred: {str(e)}")
 
-        csrf_token = user_service.get_csrf_token()
+        csrf_token = get_csrf_token()
         return render_template('my_characters.html', character_list=character_list, error=error, csrf_token=csrf_token)
 
 
@@ -26,7 +27,7 @@ def character_routes(app):
     def create_character_route_get():
         error = None
 
-        csrf_token = user_service.get_csrf_token()
+        csrf_token = get_csrf_token()
         return render_template('create_character.html', error=error, csrf_token=csrf_token, character=None)
 
 
@@ -51,7 +52,7 @@ def character_routes(app):
     @app.route('/characters/modify/<int:character_id>', methods=['GET'])
     def modify_character_get(character_id):
         error = None
-        csrf_token = user_service.get_csrf_token()
+        csrf_token = get_csrf_token()
 
         character = character_service.get_character_by_character_id(character_id)
 
@@ -62,8 +63,10 @@ def character_routes(app):
             return render_template('modify_character.html', error=error, character_id=character_id, character=character, csrf_token=csrf_token)
 
 
-    @app.route('/characters/modify/<int:character_id>', methods=['GET'])
+    @app.route('/characters/modify/<int:character_id>', methods=['POST'])
     def modify_character_post(character_id):
+        error=None
+
         try:
             name, health, armor_class = CharacterHandlers.get_character_form_data()
             character_service.modify_character(character_id, name, health, armor_class)
@@ -71,7 +74,7 @@ def character_routes(app):
             error = "Character modifying failed."
             logging.error(f"Error occurred: {str(e)}")
 
-        return redirect(url_for('my_characters_route'))
+        return redirect(url_for('my_characters_route', error=error))
 
 
     @app.route('/characters/delete/<int:character_id>', methods=['POST'])
