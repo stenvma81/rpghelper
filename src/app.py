@@ -1,13 +1,10 @@
-from flask import Flask, render_template
+from flask import Flask
 from dotenv import load_dotenv
 from flask_migrate import Migrate
 
 load_dotenv()
 
 from utils.config import Config
-from routes.auth_routes import auth_routes
-from routes.character_routes import character_routes
-from routes.map_routes import map_routes
 from blueprints.map import map_blueprint
 from blueprints.auth import auth_blueprint
 from blueprints.character import character_blueprint

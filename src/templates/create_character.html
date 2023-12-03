@@ -1,8 +1,0 @@
-{% extends "layout.html" %}
-{% block content %}
-    <h2>Create new character</h2>
-    {% include 'character_form.html' %}
-    {% if error %}
-        <p>{{ error }}</p>
-    {% endif %}
-{% endblock %}
