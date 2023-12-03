@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h2>Register</h2>
+    <form method="POST">
+        <div class="form-container">
+            <div class="input-container">
+                <p>Username:</p>
+                <input type="text" name="username" required>
+            </div>
+            <div class="input-container-radio">
+                <p>Role:</p>
+                <input type="radio" id="user" value="player" name="role" checked>
+                <label for="user">Player</label>
+                <input type="radio" id="user" value="admin" name="role">
+                <label for="admin">GM</label>
+            </div>
+            <div class="input-container">
+                <p>Password:</p>
+                <input type="password" name="password_a" required>
+            </div>
+            <div class="input-container">
+            <p>Password again:</p>
+            <input type="password" name="password_b" required>
+            </div>
+        <br>
+        </div>
+        <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+        <input type="submit" value="Register" class="button">
+    </form>
+    {% if error %}
+        <p>{{ error }}</p>
+    {% endif %}
+{% endblock %}
