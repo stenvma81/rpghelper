@@ -41,10 +41,8 @@ def login_route_post():
 
 @auth_blueprint.route('/register', methods=['GET'])
 def register_route_get():
-    error = None
-
     csrf_token = get_csrf_token()
-    return render_template('register.html', error=error, csrf_token=csrf_token)
+    return render_template('register.html', error=None, csrf_token=csrf_token)
 
 
 @auth_blueprint.route('/register', methods=['POST'])
