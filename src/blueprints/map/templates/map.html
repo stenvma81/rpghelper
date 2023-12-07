@@ -1,17 +1,17 @@
 {% extends "layout.html" %}
 {% block content %}
     <head>
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/map.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/character.css') }}">
+        <link rel="stylesheet" href="{{ url_for('map_blueprint.static', filename='css/map.css') }}">
+        <link rel="stylesheet" href="{{ url_for('map_blueprint.static', filename='css/character.css') }}">
     </head>
     <div id="mapContainer">
-        <img id="map" src="{{ url_for('static', filename='images/night_city_map.jpg') }}" alt="Night City Map">
+        <img id="map" src="{{ url_for('map_blueprint.static', filename='images/night_city_map.jpg') }}" alt="Night City Map">
         <div id="character">
             <div id="healthBarContainer">
                 <div class="healthBar" id="healthBar1" ></div>
                 <div class="healthBar" id="healthBar2" ></div>
             </div>
-            <img id="playerIcon" src="{{ url_for('static', filename='images/titlrd.jpg') }}" alt="Player Icon">
+            <img id="playerIcon" src="{{ url_for('map_blueprint.static', filename='images/titlrd.jpg') }}" alt="Player Icon">
             <div id="nameTag">Kurppa</div>
         </div>
     </div>
@@ -25,7 +25,7 @@
             </option>
         {% endfor %}
     </select>
-    <script src="{{ url_for('static', filename='JS/draggable_icon.js') }}"></script>
+    <script src="{{ url_for('map_blueprint.static', filename='js/draggable_icon.js') }}"></script>
     {% if error %}
         <p>{{ error }}</p>
     {% endif %}
