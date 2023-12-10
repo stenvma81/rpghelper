@@ -23,7 +23,7 @@ def my_characters_route():
 
 @character_blueprint.route('/characters/create', methods=['GET'])
 def create_character_route_get():
-    error = None
+    error = session.pop('error', None)
 
     csrf_token = get_csrf_token()
     return render_template('create_character.html', error=error, csrf_token=csrf_token, character=None)
@@ -38,20 +38,25 @@ def create_character_route_post():
 
     error = CharacterHandlers.character_form_check_input(name, health, armor_class, error)
 
-    if not error:
-        try:
-            character_service.create_character(name, health, armor_class, user_id)
-            return redirect(url_for('my_characters_route'))
-        except Exception as e:
-            error = "Character creation failed."
-            logging.error(f"Error occurred: {str(e)}")
+    if error:
+        session['error'] = error
+        logging.error(f"Error occurred: {str(error)}")
+
+    try:
+        character_service.create_character(name, health, armor_class, user_id)
+        return redirect(url_for('character_blueprint.my_characters_route'))
+    except Exception as e:
+        session['error'] = "Character creation failed."
+        logging.error(f"Error occurred: {str(e)}")
+
+    return redirect(url_for('character_blueprint.create_character_route_get'))
     
 
 @character_blueprint.route('/characters/modify/<int:character_id>', methods=['GET'])
 def modify_character_get(character_id):
     error = None
-    csrf_token = get_csrf_token()
 
+    csrf_token = get_csrf_token()
     character = character_service.get_character_by_character_id(character_id)
 
     if character is None:
@@ -80,7 +85,7 @@ def delete_character(character_id):
     error = None
 
     try:
-        character_list = character_service.delete_character(character_id)
+        character_service.delete_character(character_id)
     except Exception as e:
         error = "Character deletion failed."
         logging.error(f"Error occurred: {str(e)}")
