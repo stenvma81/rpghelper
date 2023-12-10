@@ -4,10 +4,10 @@
     <td>{{ character.health }}</td>
     <td>{{ character.armor_class }}</td>
     <td>
-        <form action="{{ url_for('modify_character_get', character_id=character.character_id) }}" method="get">
+        <form action="{{ url_for('character_blueprint.modify_character_get', character_id=character.character_id) }}" method="get">
             <input type="submit" value="Modify">
         </form>
-        <form action="{{ url_for('delete_character', character_id=character.character_id) }}" method="post">
+        <form action="{{ url_for('character_blueprint.delete_character', character_id=character.character_id) }}" method="post">
             <input type="submit" value="Delete">
         </form>
     </td>

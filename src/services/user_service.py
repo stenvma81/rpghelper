@@ -1,5 +1,4 @@
-import os
-from flask import abort, request, session
+from flask import session
 from sqlalchemy import text
 from sqlalchemy.exc import IntegrityError
 from werkzeug.security import check_password_hash, generate_password_hash

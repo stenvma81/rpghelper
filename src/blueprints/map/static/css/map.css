@@ -10,8 +10,8 @@
 
 #character {
     position: absolute;
-    top: 200px; /* Adjust as needed */
-    left: 200px; /* Adjust as needed */
+    top: 200px;
+    left: 200px;
     text-align: center;
 }
 
@@ -19,13 +19,13 @@
     width: 50px;
     height: 50px;
     cursor: pointer;
-    display: block; /* Makes the icon a block element */
-    margin: 0 auto; /* Centers the icon horizontally */
+    display: block;
+    margin: 0 auto; 
 }
 
 #healthBarContainer {
     position: absolute;
-    top: -20px; /* Adjust as needed */
+    top: -20px;
     left: 0;
     right: 0;
     margin: 0 auto;
