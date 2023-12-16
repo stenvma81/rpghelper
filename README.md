@@ -1,6 +1,14 @@
 # rpghelper
 A Python-Flask project aiming to create a web-based helper application for playing tabletop RPGs. This basic version will be geared towards Cyberpunk RED and allow the users to create characters which will be displayed on a game scenario map. Each user can move their respective characters while the admin can control all map icons.
 
+## Table of Contents
+
+- [Features](#features)
+- [Roadmap](#roadmap)
+- [Testing](#testing)
+- [Contributing](#contributing)
+- [License](#license)
+
 ## Features:
 
 - **Account Management**: Players can create a new account and log in. GM (admin) can log in and manage created accounts.
@@ -65,3 +73,32 @@ To test the app install the necessary dependencies and start the development ser
 pip install -r requirements.txt
 flask run
 ```
+
+## Contributing
+
+### Opening Issues
+
+We encourage you to open issues for:
+
+- Reporting bugs
+- Requesting new features
+- Discussing improvements
+- Asking questions
+
+Please make sure to follow these guidelines when opening an issue:
+
+1. **Search Before You Post**: Before opening a new issue, please search existing issues to check if your topic has already been discussed or reported.
+
+2. **Be Descriptive**: Provide a clear and detailed description of the issue or suggestion you have in mind. Include relevant information such as your operating system, browser, or any error messages.
+
+3. **Respect Our Time**: Please be patient when waiting for a response. We are volunteers and will do our best to address your concerns promptly.
+
+### Collaboration and Pull Requests
+
+While we value and appreciate contributions from the community, we currently do not accept direct collaborations or pull requests in this repository. If you'd like to contribute code, please consider forking the repository and working on your changes there. You can then submit a pull request to discuss your changes.
+
+Thank you for understanding and for your interest in improving this project!
+
+## License
+
+This project is licensed under the [MIT License](LICENSE.txt). See the [LICENSE.txt](LICENSE.txt) file for details.
