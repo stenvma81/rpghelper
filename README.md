@@ -101,4 +101,4 @@ Thank you for understanding and for your interest in improving this project!
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE.txt). See the [LICENSE.txt](LICENSE.txt) file for details.
+This project is licensed under the [MIT License](LICENSE.txt). See the [LICENSE](LICENSE) file for details.
