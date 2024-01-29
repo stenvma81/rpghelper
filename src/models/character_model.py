@@ -9,6 +9,8 @@ class Character(db.Model):
     health = db.Column(db.Integer, nullable=False)
     armor_class = db.Column(db.Integer, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    x_coordinate = db.Column(db.Float, default=0.0)
+    y_coordinate = db.Column(db.Float, default=0.0)
 
     def __repr__(self):
         return f'<Character {self.name}>'
