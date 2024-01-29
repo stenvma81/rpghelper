@@ -1,6 +1,7 @@
-from flask import session, render_template
+from flask import session, render_template, current_app
 from services import character_service, user_service
 from . import map_blueprint
+from utils.socketio_manager import socketio
 import logging
 
 
